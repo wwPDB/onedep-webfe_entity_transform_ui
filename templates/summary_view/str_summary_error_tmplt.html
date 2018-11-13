@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>TransMod: %(pdbid)s / %(identifier)s - Structure View</title>
+<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/themes/south-street/jquery-ui-1.8.2.custom.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/general.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/oneColLiqCtrHdr.css" />
+</head>
+<body class="oneColLiqCtrHdr">
+<div id="container">
+<!-- begin #header-->
+	<div id="header">
+    	<div id="logo"><img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" /> </div>
+    	<div id="headerCont">
+      		<h1>View of %(pdbid)s / %(identifier)s</h1>
+      		<span id="help" class="ui-icon ui-icon-info fltrgt"></span>
+		</div>
+    	<br class="clearfloat" /> 
+	</div>
+<!-- #header ends above-->
+    <br class="clearfloat" />
+	<br />
+<!-- #mainContent begins -->
+	<div id="mainContent">
+              <h4>PDB ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(pdbid)s</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                      DEPOSITION ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(identifier)s</span> </h4>
+               <h4>Entry Title : &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal;">%(title)s</span></h4>
+%(error)s
+	</div>
+<!-- #mainContent ends above -->
+<!-- #footer begins -->
+	<br class="clearfloat" />
+	<div id="footer">
+   		<p>&copy; 2010 wwPDB </p>
+	</div>
+<!-- #footer ends above -->
+</div>
+<!-- #container ends above-->
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>TransMod: %(pdbid)s / %(identifier)s - 3D of %(instanceid)s in Full Structure View</title>
+<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/themes/south-street/jquery-ui-1.8.2.custom.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/general.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/oneColLiqCtrHdr.css" />
+<script type="text/javascript" src="/applets/jmol-dev/jsmol/JSmol.min.js"></script>
+<script type='text/javascript'>
+
+var jmolApplet0;
+
+var Info = {
+    width: "90%%",
+    height: "90%%",
+    debug: false,
+    color: "white",
+    addSelectionOptions: false,
+    serverURL: "/applets/jmol-dev/jsmol/php/jsmol.php",
+    use: "HTML5",
+    j2sPath: "/applets/jmol-dev/jsmol/j2s",
+    readyFunction: null,
+    script: "background [xD3D3D3]; background LABELS [xF8F8FF]; color carbon black;",
+    disableJ2SLoadMonitor: true,
+    disableInitialConsole: true,
+    progressbar: true,
+    progresscolor: "blue",
+    boxbgcolor: "white",
+    boxfgcolor: "black"
+}
+
+$(document).ready(function() {
+    $('#btn_lbls_on_off').click(function() {
+        var cmd = $(this).prop('value');
+        if( cmd == "Labels Off" ){
+            $(this).prop('value','Labels On');
+            Jmol.script(jmolApplet0, "label off;");
+        } else {
+            $(this).prop('value','Labels Off');
+            Jmol.script(jmolApplet0, "label '%%a';");
+        }
+    });
+});
+</script>
+</head>
+<body class="oneColLiqCtrHdr">
+<div id="container">
+<!-- begin #header-->
+	<div id="header">
+    	<div id="logo"><img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" /> </div>
+    	<div id="headerCont">
+      		<h1>View of %(label)s</h1>
+      		<!-- <span id="help" class="ui-icon ui-icon-info fltrgt"></span> -->
+		</div>
+    	<br class="clearfloat" /> 
+	</div>
+<!-- #header ends above-->
+    <br class="clearfloat" />
+	<br />
+<!-- #mainContent begins -->
+	<div id="mainContent">
+            <h4>PDB ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(pdbid)s</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                         DEPOSITION ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(identifier)s</span> </h4>
+            <h4>Entry Title : &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal;">%(title)s</span></h4>
+            <div id="auth_environ_jmol_%(instanceid)s" class="threeD_environ_vw">
+                <script type="text/javascript">
+                    jmolApplet0 = Jmol.getApplet("%(instanceid)s1", Info);
+                    var script = "load %(3dpath)s; wireframe only; wireframe 0.05; labels off; "
+                               + "display within(8.0, %(focus)s); zoomto (%(focus)s) 300; "
+                               + "select (%(focus)s); wireframe only; wireframe 0.10; spacefill 15%%;";
+                    Jmol.script(jmolApplet0, script);
+                </script>
+            </div>
+
+	    <div class="threeD_environ_vw_cntrls">
+		<input id="btn_lbls_on_off" name="btn_lbls_on_off" value="Labels On" type="button">
+	    </div>
+	    <br />			
+	</div>
+<!-- #mainContent ends above -->
+<!-- #footer begins -->
+	<br class="clearfloat" />
+	<div id="footer">
+   		<p>&copy; 2010 wwPDB </p>
+	</div>
+<!-- #footer ends above -->
+</div>
+<!-- #container ends above-->
+</body>
+</html>

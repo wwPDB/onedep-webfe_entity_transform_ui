@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>TransMod: %(pdbid)s / %(identifier)s - Summary Page</title>
+<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/themes/south-street/jquery-ui-1.8.2.custom.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/general.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/oneColLiqCtrHdr.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/superfish.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/entity_transform_ui/styles/extra.css" />
+<script type="text/javascript" src="/assets/js/jquery/core/jquery.min.js"></script>
+<script type="text/javascript">
+     var sessionid  = '%(sessionid)s';
+     var identifier = '%(identifier)s';
+     var filesource = '%(filesource)s';
+     var instance   = '%(instance)s';
+     var classID    = '%(classID)s';
+
+function checkRunningStatus(semaphore) {
+    $.ajax({url: '/service/entity/check_running_status', dataType: 'json', data: { 'semaphore': semaphore, 'sessionid': sessionid },
+        success: function (jsonObj) {
+            if (jsonObj.statuscode == 'running') {
+                t = setTimeout(function() { checkRunningStatus(semaphore) }, 3000);
+            } else if (jsonObj.statuscode == 'ok') {
+                $('#form_data').html(jsonObj.htmlcontent);
+                $('#form_data').show();
+                $('#savedone').removeAttr('disabled');
+                $('#refresh').removeAttr('disabled');
+                $('#spin_wheel').hide();
+            } else {
+                alert(jsonObj.statustext);
+            }
+        },
+        error: function (data, status, e) {
+            alert(e);
+            return false;
+        }
+    });
+}
+
+function closeWindow() {
+    //uncomment to open a new window and close this parent window without warning
+    //var newwin=window.open("popUp.htm",'popup','');
+    if(navigator.appName=="Microsoft Internet Explorer"){
+        this.focus();self.opener = this;self.close();
+    } else {
+            window.open('','_parent',''); window.close();
+    }
+}
+
+$(document).ready(function() {
+       $('.jshead').live("click", function() {
+            var ele = $(this).find('span:first');
+            ele.toggleClass('ui-icon-circle-arrow-s ui-icon-circle-arrow-e');
+            $(this).next().toggle('slow');
+            return false;
+       });
+       $.getScript('/assets/js/jquery/plugins/jquery.bt.min.js', function() {
+             $('.warninfo [title]').bt({positions:['most'], width:300, centerPointX:.8,
+                                        spikeLength:10, spikeGirth:15, padding:'15px',
+                                        fill:'#FFF', strokeStyle:'#ABABAB',
+                                        strokeWidth:1, cssStyles:{fontSize:'85%%'}});
+       });
+       $('#savedone').click(function() {
+           var fsrc = filesource.toLowerCase();
+           if (fsrc.startsWith("wf")) {
+               $.ajax({ type: 'POST', async: false, url: '/service/entity/exit_finished', dataType: 'json',
+                        data: { 'sessionid': sessionid, 'identifier': identifier, 'filesource': filesource, 'instance': instance, 'classID': classID },
+                        dataType: 'json',
+                        success: function(jsonOBJ) {
+                            if (!jsonOBJ.errorflag) {
+                                 alert("Work will be saved");
+                                 closeWindow();
+                            } else {
+                                 alert(jsonOBJ.errortext);
+                            }
+                        },
+                        error: function (data, status, e) {alert(e);}
+               });
+           } else {
+               $('html').html('');
+           }
+       });
+       $('#refresh').click(function() {
+           $.ajax({ type: 'POST', async: false, url: '/service/entity/refresh_struct_summary', dataType: 'json',
+                    data: { 'sessionid' : sessionid, 'identifier' : identifier },
+                    success: function(jsonOBJ) {
+                        $('#form_data').hide();
+                        $("#savedone").attr('disabled','disabled');
+                        $('#refresh').attr('disabled','disabled');
+                        $('#spin_wheel').show();
+                        checkRunningStatus(jsonOBJ.semaphore);
+                  }
+           });
+       });
+
+       checkRunningStatus('%(sph)s');
+});
+</script>
+</head>
+
+<body class="oneColLiqCtrHdr">
+<div id="container">
+     <div id="header">
+          <div id="logo"><img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" />
+          </div>
+          <div id="headerCont">
+               <h1>Structure Summary for Entry %(pdbid)s / %(identifier)s </h1>
+          </div>
+          <br class="clearfloat" />
+     </div>
+     <br class="clearfloat" />
+     <br/>
+
+     <div id="mainContent">
+         <div class="fltrgt noprint">
+             <input id="savedone" name="savedone" value="Finish" class="fltrgt" type="button" disabled="disabled" />
+             <input style="margin-right: 5px;" id="refresh" name="refresh" value="Refresh" class="fltrgt" type="button" disabled="disabled" />
+         </div>
+         <h4>PDB ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(pdbid)s</span> &nbsp;&nbsp;&nbsp;&nbsp;
+             DEPOSITION ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(identifier)s</span> </h4>
+         <h4>Entry Title : &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal;">%(title)s</span></h4>
+         <span style="font-weight:bold; font-size:16px">
+              This page provides you summary information about
+             <ol>
+                 <li> Entity and sequence (if any) information
+                 <li> Access to split or merge operations 
+                 <li> Access to split non standard residue ( if any ) in polymer
+                 <li> Possible BIRD (Biologically Interesting molecules Reference Dictionary)
+                      molecule candidates and hits for existing BIRD molecules or analogues.
+             </ol>
+<!--
+              You should process your entry to make sure the chemistry and connectivity are 
+              correct before building a new BIRD (PRD) definition.
+-->
+         </span>
+         <div id="spin_wheel">&nbsp;&nbsp;<img src="/images/loading.gif" alt="loading..." />&nbsp;&nbsp;Data being processed....</div>
+         <div id="form_data" style="display:none"></div>
+     </div>
+</div>
+</body>
+</html>

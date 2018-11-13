@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>TransMod: %(pdbid)s / %(identifier)s - Update Entry Page</title>
+<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/themes/south-street/jquery-ui-1.8.2.custom.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/entity_transform_ui/styles/oneColLiqCtrHdr.min.css" />
+<script type="text/javascript" src="/js/jquery/core/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery/plugins/jquery.bt.min.js"></script>
+<script>
+%(script)s
+</script>
+<script type="text/javascript" src="/entity_transform_ui/js/polymer.split.js"></script>
+</head>
+
+<body class="oneColLiqCtrHdr">
+<div id="container">
+  <div id="header">
+    <div id="logo"> <img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" />
+    </div>
+    <div id="headerCont">
+      <h1>Update Entry %(pdbid)s / %(identifier)s</h1>
+    </div>
+    <br class="clearfloat" />
+  </div>
+  <br class="clearfloat" />
+  <br/>
+
+  <div id="mainContent">
+         <h4>PDB ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(pdbid)s</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                        DEPOSITION ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(identifier)s</span> </h4>
+         <h4>Entry Title : &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal;">%(title)s</span></h4>
+
+         <span style="font-weight:bold; font-size:16px">
+             <ul>
+                 <li> Mouseover 1-letter code to show 3-letter code and residue position in sequence (not the actual residue number in coordinate).
+                 <li> Click a 1-letter code to create break point between current and next residues for spliting.
+                 <li> Click "Delete" button to remove the break point.
+             </ul>
+         </span>
+
+<form id="split_form" method="post" action="/service/entity/split_polymer" target="_blank">
+<input type="hidden" name="sessionid" value="%(sessionid)s" />
+<input type="hidden" name="identifier" value="%(identifier)s" />
+<input type="hidden" name="pdbid" value="%(pdbid)s" />
+
+%(form_data)s
+
+<br/>
+<br/>
+
+<table>
+    <tr>
+        <td style="border-style:none"> <input type = 'submit' name = 'submit' value = 'Split polymer to polymer(s)/non-polymer(s)' /> </td>
+    </tr>
+</table>
+
+</form>
+
+
+  </div>
+
+</div>
+</body>
+</html>

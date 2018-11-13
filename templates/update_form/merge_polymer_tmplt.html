@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>TransMod: %(pdbid)s / %(identifier)s - Update Entry Page</title>
+<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/themes/south-street/jquery-ui-1.8.2.custom.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/general.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/oneColLiqCtrHdr.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/superfish.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/entity_transform_ui/styles/extra.css" />
+<script type="text/javascript" src="/assets/js/jquery/core/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+       $('.jshead').live("click", function() {
+            var ele = $(this).find('span:first');
+            ele.toggleClass('ui-icon-circle-arrow-s ui-icon-circle-arrow-e');
+            $(this).next().toggle('slow');
+            return false;
+       });
+       $.getScript('/assets/js/jquery/plugins/jquery.bt.min.js', function() {
+             $('.warninfo [title]').bt({positions:['most'], width:300, centerPointX:.8,
+                                        spikeLength:10, spikeGirth:15, padding:'15px',
+                                        fill:'#FFF', strokeStyle:'#ABABAB',
+                                        strokeWidth:1, cssStyles:{fontSize:'85%%'}});
+       });
+});
+</script>
+</head>
+
+<body class="oneColLiqCtrHdr">
+<div id="container">
+     <div id="header">
+          <div id="logo"><img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" />
+          </div>
+          <div id="headerCont">
+               <h1>Update Entry %(pdbid)s / %(identifier)s</h1>
+          </div>
+          <br class="clearfloat" />
+     </div>
+     <br class="clearfloat" />
+     <br/>
+
+     <div id="mainContent">
+         <h4>PDB ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(pdbid)s</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                      DEPOSITION ID : &nbsp;&nbsp;&nbsp;&nbsp; <span style="font-weight: normal;">%(identifier)s</span> </h4>
+         <h4>Entry Title : &nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: normal;">%(title)s</span></h4>
+
+<span style="font-weight:bold; font-size:16px">
+Please select correct number to define the order of each user defined sub-group in new polymer. For example
+</span>
+<form>
+chain A &nbsp; <select name="A">
+<option value="1" selected> 1
+<option value="2" > 2
+<option value="3" > 3
+<option value="4" > 4
+<option value="5" > 5
+</select>
+ &nbsp; &nbsp; &nbsp; 
+chain B &nbsp; <select name="B">
+<option value="1" > 1
+<option value="2" > 2
+<option value="3" > 3
+<option value="4" > 4
+<option value="5" selected > 5
+</select>
+ &nbsp; &nbsp; &nbsp; 
+residue C_HIS_8_ &nbsp; <select name="C_HIS_8_">
+<option value="1" > 1
+<option value="2" selected> 2
+<option value="3" > 3
+<option value="4" > 4
+<option value="5" > 5
+</select>
+ &nbsp; &nbsp; &nbsp; 
+residue C_HIS_9_ &nbsp; <select name="C_HIS_9_">
+<option value="1" > 1
+<option value="2" > 2
+<option value="3" selected> 3
+<option value="4" > 4
+<option value="5" > 5
+</select>
+ &nbsp; &nbsp; &nbsp; 
+residue C_HIS_10_ &nbsp; <select name="C_HIS_10_">
+<option value="1" > 1
+<option value="2" > 2
+<option value="3" > 3
+<option value="4" selected> 4
+<option value="5" > 5
+</select>
+</form>
+<span style="font-weight:bold; font-size:16px">
+merges to polymer with order of chain A, residue C_HIS_8_, residue C_HIS_9_, residue C_HIS_10_, chain B.
+</span>
+
+<br/> <br/>
+
+<form method="post" action="/service/entity/merge_polymer" target="_blank">
+<input type="hidden" name="sessionid" value="%(sessionid)s" />
+<input type="hidden" name="identifier" value="%(identifier)s" />
+<input type="hidden" name="pdbid" value="%(pdbid)s" />
+
+%(form_data)s
+
+<br/>
+<br/>
+
+<table>
+    <tr>
+        <td style="border-style:none"> <input type = 'submit' name = 'submit' value = 'Merge to polymer' /> </td>
+    </tr>
+</table>
+
+</form>
+
+     </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+%(update_comment_start)s
+<title>%(identifier)s (%(pdbid)s) - Generating PRD </title>
+%(update_comment_end)s
+%(build_comment_start)s
+<title>%(identifier)s (%(pdbid)s) - Generating %(prd_id)s </title>
+%(build_comment_end)s
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/general.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/oneColLiqCtrHdr.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/entity_transform_ui/styles/extra.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/superfish.css" />
+<link rel="stylesheet" type="text/css" media="all" href="/assets/styles/themes/south-street/jquery-ui-1.8.2.custom.min.css" />
+<!--
+<script type="text/javascript" src="/js/jquery-10.2/core/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/entity_transform_ui/js/serach_result_page.js"></script>
+-->
+</head>
+
+<body class="oneColLiqCtrHdr">
+<div id="container">
+     <div id="header">
+          <div id="logo"><img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" />
+          </div>
+          <div id="headerCont">
+%(update_comment_start)s
+               <h1>Generating new PRD based on %(label)s from entry %(pdbid)s / %(identifier)s </h1>
+%(update_comment_end)s
+%(build_comment_start)s
+               <h1>Generating new %(prd_id)s based on %(label)s from entry %(pdbid)s / %(identifier)s </h1>
+%(build_comment_end)s
+          </div>
+          <br class="clearfloat" />
+     </div>
+     <br class="clearfloat" />
+     <br/>
+
+     <div id="mainContent">
+         <form action="/service/entity/update_prd" method="post">
+             <input type="hidden" name="sessionid" value="%(sessionid)s" />
+             <input type="hidden" name="identifier" value="%(identifier)s" />
+             <input type="hidden" name="instanceid" value="%(instanceid)s" />
+             <input type="hidden" name="annotator" value="%(annotator)s" />
+             <input type="hidden" name="pdbid" value="%(pdbid)s" />
+             <input type="hidden" name="site" value="%(site)s" />
+%(build_comment_start)s
+             <input type="hidden" name="prd_id" value="%(prd_id)s" />
+%(build_comment_end)s
+             <input id="fam_id" type="hidden" name="fam_id" value="%(fam_id)s" />
+             <input type="hidden" name="label" value="%(label)s" />
+             <input type="hidden" name="sourcerow" value="%(sourcerow)s" />
+             <input type="hidden" name="prdfile" value="%(prdfile)s" />
+             <table>
+             <tr>
+             <td style="text-align:left;border-style:none"><span style="font-weight:bold">PRD ID:</span></td>
+%(build_comment_start)s
+             <td style="text-align:left;border-style:none" colspan="10"><span style="font-weight:bold">%(label_prd_id)s</span></td>
+%(build_comment_end)s
+%(update_comment_start)s
+             <td style="text-align:left;border-style:none;">
+                 <input style="background-color:#D3D6FF;" id="prd_id" type="text" name="prd_id" value="%(prd_id)s" size="15"/>
+             </td>
+             <td style="text-align:left;border-style:none;" >
+                 <input type="submit" name="submit" value="Get New PRD ID" />
+             </td>
+             <td style="text-align:left;border-style:none;" colspan="2" >
+                 <input type="submit" name="submit" value="Get Existing PRD Info" />
+             </td>
+             <td style="text-align:left;border-style:none;" colspan="6" >
+                 &nbsp;
+<!--
+                 <span style="font-weight:bold;color:red;">WARNING: Always assign PRD ID first before any editing</span>
+-->
+             </td>
+%(update_comment_end)s
+             </tr>
+
+             <tr>
+                 <td style="text-align:left;border-style:none">
+                     <span style="font-weight:bold">Molecular Name:
+%(update_comment_start)s
+                          <input type="checkbox" name="mol_name_flag" value="yes" checked="yes" />
+%(update_comment_end)s
+                     </span>
+                 </td>
+                 <td style="text-align:left;border-style:none" colspan="10">
+                     <textarea %(style_background_color1)s name="mol_name" cols="150", rows="2" wrap>%(mol_name)s</textarea>
+                 </td>
+             </tr>
+
+             <tr>
+                 <td style="text-align:left;border-style:none">
+                     <span style="font-weight:bold">Class:
+%(update_comment_start)s
+                          <input type="checkbox" name="class_flag" value="yes" checked="yes" />
+%(update_comment_end)s
+                     </span>
+                 </td>
+                 <td style="text-align:left;border-style:none" colspan="10">%(class)s</td>
+             </tr>
+
+             <tr>
+                 <td style="text-align:left;border-style:none">
+                     <span style="font-weight:bold">Type:
+%(update_comment_start)s
+                          <input type="checkbox" name="type_flag" value="yes" checked="yes" />
+%(update_comment_end)s
+                     </span>
+                 </td>
+                 <td style="text-align:left;border-style:none" colspan="10">%(type)s</td>
+             </tr>
+
+             <tr>
+                 <td style="text-align:left;border-style:none">
+                     <span style="font-weight:bold">Status:
+%(update_comment_start)s
+                          <input type="checkbox" name="status_flag" value="yes" checked="yes" />
+%(update_comment_end)s
+                     </span>
+                 </td>
+                 <td style="text-align:left;border-style:none" colspan="10">%(status)s</td>
+             </tr>
+
+%(single_comment_start)s
+             <tr>
+                 <td style="text-align:left;border-style:none">
+                     <span style="font-weight:bold">Compound Details:
+%(comp_detail_flag_start)s
+                          <input type="checkbox" name="comp_detail_flag" value="yes" checked="yes" />
+%(comp_detail_flag_end)s
+                     </span>
+                 </td>
+                 <td style="text-align:left;border-style:none" colspan="10">
+                     <textarea %(style_background_color2)s name="comp_detail" cols="150", rows="3" wrap>%(comp_detail)s</textarea>
+                 </td>
+             </tr>
+%(single_comment_end)s
+
+             <tr>
+                 <td style="text-align:left;border-style:none">
+                     <span style="font-weight:bold">Description:
+%(update_comment_start)s
+                          <input type="checkbox" name="description_flag" value="yes" checked="yes" />
+%(update_comment_end)s
+                     </span>
+                 </td>
+                 <td style="text-align:left;border-style:none" colspan="10">
+                     <textarea %(style_background_color3)s name="description" cols="150", rows="3" wrap>%(description)s</textarea>
+                 </td>
+             </tr>
+
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+
+             <tr><th style="text-align:left" colspan="5"> Component List </th></tr>
+
+             <tr>
+             <th style="text-align:left">Component ID</th>
+             <th style="text-align:left">Entity ID</th>
+             <th style="text-align:left">Type</th>
+             <th style="text-align:left"  colspan="2">Details</th>
+             </tr>
+%(component_list)s
+
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+
+             <tr><th style="text-align:left" colspan="11"> Source Information </th></tr>
+
+             <tr>
+             <th style="text-align:left1">Entity ID</th>
+             <th style="text-align:left" colspan="3">Scientific Name</th>
+             <th style="text-align:left">Tax ID</th>
+             <th style="text-align:left" colspan="2">Reference</th>
+             <th style="text-align:left" colspan="2">Reference ID</th>
+             <th style="text-align:left">DB Name</th>
+             <th style="text-align:left">DB Code</th>
+             </tr>
+
+%(source)s
+
+             <tr>
+               <td style="border-style:none" colspan="10">&nbsp;</td>
+               <td style="border-style:none; text-align:center;">
+                     <input type="submit" name="submit" value="Add Rows" />
+               </td>
+             </tr>
+
+             <tr>
+             <th style="text-align:left" colspan="5"> Polymer Information </th>
+             <td style="text-align:left;border-style:none" colspan="7"></td>
+             </tr>
+
+             <tr>
+             <th style="text-align:left">Entity ID</th>
+             <th style="text-align:left">Residue</th>
+             <th style="text-align:left">Number</th>
+             <th style="text-align:left">Observed</th>
+             <th style="text-align:left">Standard Amino Acid</th>
+             <td style="text-align:left;border-style:none" colspan="7"></td>
+             </tr>
+
+%(polymer)s
+
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+
+%(entitylink)s
+
+%(polylink)s
+
+             <tr>
+             <th style="text-align:left">Entity ID</th>
+             <th style="text-align:left">DB Name</th>
+             <th style="text-align:left">DB Code</th>
+             <td style="text-align:left;border-style:none" colspan="2"></td>
+             </tr>
+
+%(dbref)s
+
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+
+             <tr>
+             <th style="text-align:left" colspan="11">Audit Section</th>
+             </tr>
+             <tr>
+             <th style="text-align:left;border-style:none">Date</th>
+             <th style="text-align:left;border-style:none">Annotator</th>
+             <th style="text-align:left;border-style:none" colspan="2">Action Type</th>
+             <th style="text-align:left;border-style:none" colspan="7">Details</th>
+             </tr>
+%(detail)s
+<!--
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+             <tr>
+             <th style="text-align:left" colspan="6">Family Section</th>
+             </tr>
+             <tr>
+             <td style="text-align:left;border-style:none"><span style="font-weight:bold">Family ID:</span></td>
+             <td style="text-align:left;border-style:none"><span id="famid_display" style="font-weight:bold">%(fam_id)s</span></td>
+             <td style="border-style:none; text-align:left;">
+                    <input id="get_new_famid" type="button" value="Get New Family ID" />
+             </td>
+             <td style="border-style:none; text-align:left;" colspan="2">
+                    <input id="get_exist_famid" type="button" value="Get Existing Family ID Based on PRD ID" />
+             </td>
+             <td style="border-style:none; text-align:left;">
+                    <input style="background-color:#D3D6FF;" id="exist_prd_id" type="text" size="18" />
+             </td>
+             </tr>
+
+             <tr>
+                  <td style="text-align:left;border-style:none"><span style="font-weight:bold">Family Name:</span></td>
+                  <td style="border-style:none; text-align:left;" colspan="5">
+                        <input style="background-color:#D3D6FF;" type="text" name="family_name" value="%(family_name)s" size="130" />
+                  </td>
+             </tr>
+-->
+
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+             <tr><td style="border-style:none" colspan="11">&nbsp;</td></tr>
+             <tr><td style="border-style:none">&nbsp;</td>
+<!--
+                 <td style="border-style:none"> <input type="submit" name="submit" value="Download PRD" /> </td>
+-->
+                 <td style="border-style:none">&nbsp;</td>
+                 <td style="border-style:none">&nbsp;</td>
+<!--
+                 <td style="border-style:none"> %(prdcc_button)s </td>
+-->
+                 <td style="border-style:none"> <input type="submit" name="submit" value="Update PRD" /> </td>
+              
+                 <td style="border-style:none">&nbsp;</td>
+<!--
+                 <td style="border-style:none"> <input type="submit" name="submit" value="Download FAMILY" /> </td>
+-->
+                 <td style="border-style:none">&nbsp;</td>
+                 <td style="border-style:none"> <input type="submit" name="submit" value="Commit to CVS" /> </td>
+                 <td style="border-style:none">&nbsp;</td>
+                 <td style="border-style:none">&nbsp;</td>
+                 <td style="border-style:none">&nbsp;</td>
+             </tr>
+             </table>
+             </br>
+         </form>
+
+     </div>
+</div>
+</body>
+</html>

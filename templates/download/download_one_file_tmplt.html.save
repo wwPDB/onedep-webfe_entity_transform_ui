@@ -1,0 +1,4 @@
+</br>
+</br>
+<a href="/chemeditor/cgi-bin/download.py?sessionid=%(sessionid)s&fileid=%(fileid)s&instanceid=%(instanceid)s" target="_blank"> Download %(fileid)s </a>
+

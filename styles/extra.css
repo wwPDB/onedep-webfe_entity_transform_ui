@@ -1,0 +1,7 @@
+.head1{display:block; width:100%; text-decoration:none; font-weight:bold; font-size: 110%; border:#CCC 1px solid; padding:5px; margin:5px 0;}
+.head2{display:block; position:fixed; left:10px; width:100%; text-decoration:none; font-weight:bold; font-size: 110%; border:#CCC 1px solid; padding:5px; margin:5px 0;}
+.head3{display:block; position:fixed; left:20px; width:100%; text-decoration:none; font-weight:bold; font-size: 110%; border:#CCC 1px solid; padding:5px; margin:5px 0;}
+.fltcrgt{margin-left:0 0 0 .1%; padding:0;background-color:#1E90FF;font-weight:bold;font-size: 15px;}
+li { font-size: 17px; font-style: normal; line-height: normal; font-weight: bold; color: #000000; text-decoration: none; }
+.fltnext{float:none; margin-left:0 0 0 .1%; padding:0}
+.jshead{display:block; left:20px; width:100%; font-weight:bold;}
