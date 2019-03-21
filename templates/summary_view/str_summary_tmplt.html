@@ -56,9 +56,12 @@ $(document).ready(function() {
                  <li> For "Split polymer to polymer(s)/non-polymer(s)" option, please use Entity ID selection. You can select multiple
                       entities and split them at same time.
                  <li> For "Merge to polymer" option, multiple groups can be merged at same time with appropriate group ID information.
-                      If no group ID defined, all selected polymer chain(s) and non-polymer residue(s) will be merged into single polymer.
+                      If no group ID defined, all selected polymer chain(s) and non-polymer residue(s) will be merged into a single polymer.
                  <li> For "Merge/Split with chopper" option, only one group can be processed at each time. All selected polymer chain(s)
                       and non-polymer residue(s) must be physically connected.
+                 <li> For "Merge to ligand" option, please only use Ligand ID selections. Multiple groups can be merged at same time with
+                      appropriate group ID information.  If no group ID defined, all selected non-polymer residues will be merged into a
+                      single ligand.
              </ol>
          </span>
 
@@ -80,6 +83,7 @@ $(document).ready(function() {
         <td style="border-style:none"> <input style="background-color:#CEECF5" type = "submit" name = "submit" value = "Merge to polymer" /> </td>
         <td style="border-style:none"> <input style="background-color:#CEECF5" type = "submit" name = "submit" value = "Split polymer to polymer(s)/non-polymer(s)" /> </td>
         <td style="border-style:none"> <input style="background-color:#CEECF5" type = "submit" name = "submit" value = "Merge/Split with chopper" /> </td>
+        <td style="border-style:none"> <input style="background-color:#CEECF5" type = "submit" name = "submit" value = "Merge to ligand" /> </td>
     </tr>
 </table>
 
