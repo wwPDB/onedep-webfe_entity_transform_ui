@@ -48,7 +48,7 @@ function insert_a_row(table, table_id, idArr, irow) {
 
     var n_terminal_button = '';
     var delete_button_id = 'delete_button_' + hidden_count;
-    var delete_button = '<input type="button" class="deleterow action_button" id="' + delete_button_id + '" name="' + table_id + '" value="Delete" />';
+    var delete_button = '<input type="button" class="deleterow action_button" id="' + delete_button_id + '" name="' + table_id + '" value="Remove" />';
     var c_terminal_button = '';
 
     if ((typeof(lengthMap) !== 'undefined') && (typeof(indexMap) !== 'undefined')) {

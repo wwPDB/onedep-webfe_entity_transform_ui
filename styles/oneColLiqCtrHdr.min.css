@@ -67,6 +67,7 @@ input[type=text], .inputbox{font:10px "Courier New",Courier,monospace; backgroun
 .bgcolerror{}
 .greybg{background-color:#CCC}
 .whitebg{background-color:#FFF}
+.greenbg{background-color:#3F8}
 .detailkey{font-weight:900}
 .ui-selecting{background:#FECA40}
 .ui-selected{background:#F39814; color:white}
