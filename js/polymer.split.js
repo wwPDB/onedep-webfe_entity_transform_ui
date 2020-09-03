@@ -149,11 +149,20 @@ function delete_row(table_id, row_index, hidden_id) {
     reset_split_button($('#'+table_id));
 }
 
+function check_submit() {
+    if (Object.keys(insert_split_button_set).length === 0) {
+         $(':input[type="submit"]').attr('disabled', true);
+    } else {
+         $(':input[type="submit"]').removeAttr('disabled');
+    }
+}
+
 $('.dblclick').live("click", function() {
     if ($(this).is('li')) {
         var idattr = $(this).attr('id');
         if (typeof idattr == 'undefined' || idattr == false) return;
         add_row(idattr, true);
+        check_submit();
     }
 });
 
@@ -175,6 +184,7 @@ $('.splitall').live("click", function() {
                  add_row(entity_key + '_' + indexMap[entity_key][i], false);
              }
         }
+        check_submit();
     } else alert("Sequence information index map not found.");
 });
 
@@ -183,6 +193,7 @@ $('.deleterow').live("click", function() {
     var hidden_id = button_id.replace('delete_button_', 'hidden_');
     var table_id = $(this).attr('name');
     delete_row(table_id, $(this)[0].parentNode.parentNode.parentNode.rowIndex, hidden_id);
+    check_submit();
 });
 
 $('.deleteallrows').live("click", function() {
@@ -196,6 +207,7 @@ $('.deleteallrows').live("click", function() {
          delete_row(table_id, 3, hidden_id);
          rows = table.find('tr');
     }
+    check_submit();
 });
 
 $(document).ready(function() {
@@ -211,4 +223,6 @@ $(document).ready(function() {
         var text = 'Residue: ' + idArr[2] + '<br />' + 'Position: ' + idArr[3];
         $(this).bt(text, toolTipConfig);
     });
+
+    check_submit();
 });
