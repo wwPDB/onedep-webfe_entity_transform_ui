@@ -10,6 +10,21 @@
 <link rel="stylesheet" type="text/css" media="all" href="/entity_transform_ui/styles/extra.css" />
 <script type="text/javascript" src="/assets/js/jquery/core/jquery.min.js"></script>
 <script type="text/javascript">
+
+function select_ligand(buttonid) {
+       var request = $('#' + buttonid).attr('value');
+       $('#structure_summary').find('input[name="ligand"]').each(function() {
+            if (request == 'Select All')
+                 $(this).attr('checked', true);
+            else $(this).attr('checked', false);
+       });
+       if (request == 'Select All') {
+            $('#' + buttonid).attr('value', 'Unselect All');
+       } else {
+            $('#' + buttonid).attr('value', 'Select All');
+       }
+}
+
 $(document).ready(function() {
        var sessionId = '%(sessionid)s';
        var identifier = '%(identifier)s';
@@ -28,6 +43,7 @@ $(document).ready(function() {
                                       fill:'#FFF', strokeStyle:'#ABABAB',
                                       strokeWidth:1, cssStyles:{fontSize:'85%%'}});
        });
+
 });
 </script>
 </head>
@@ -68,7 +84,7 @@ $(document).ready(function() {
 <br/>
 <br/>
 
-<form method="post" action="/service/entity/launch_fixer" target="_blank">
+<form method="post" id="structure_summary" action="/service/entity/launch_fixer" target="_blank">
 <input type="hidden" name="sessionid" value="%(sessionid)s" />
 <input type="hidden" name="identifier" value="%(identifier)s" />
 <input type="hidden" name="pdbid" value="%(pdbid)s" />
