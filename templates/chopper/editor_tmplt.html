@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>%(pdbid)s / %(identifier)s - Editor (%(label)s) - Chemical Component Editor Module</title>
+<title>%(pdbid)s / %(identifier)s - Editor (%(label)s) - Chemical Component Editor</title>
 
 <link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/general.css" />
 <link rel="stylesheet" type="text/css" media="all" href="/ccmodule/styles/oneColLiqCtrHdr.css" />
@@ -102,7 +102,7 @@ $(document).ready(function() {
            control:{load:false,upload:false,align2d:true,addhydro:true,align3d:false,reset:true},            
            afterLoad:jQuery.cifEdit.newCodeAssigned('chemWin'),
            afterInit:function() {
-              jQuery.chemViews.cifEditControls('chemWin',{NewCode:true,Update:true,CheckDuplicate:true,Audit:false,SetParent:true,CommittoCVS:true});
+              jQuery.chemViews.cifEditControls('chemWin',{NewCode:true,Save:true,Update:true,CheckDuplicate:true,Audit:false,SetParent:true,CommittoCVS:true});
               jQuery.chemWin.loadCifUrl('chemWin',cifUrl,instanceId);
               $('#chemWinLoading').hide();
               $('#help_link').html('<span style="display:inline;" class="ui-icon ui-icon-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
@@ -171,7 +171,7 @@ $(document).ready(function() {
 	<div id="header">
     	<div id="logo"><img src="/images/wwpdb_logo.gif" width="187" height="58" alt="logo" /> </div>
     	<div id="headerCont">
-      		<h1>Chemical Component Editor Module Editor <br/><span style="font-size:18px"> (Deposition Data Set: %(pdbid)s / %(identifier)s, Instance: (%(label)s)</span></h1>
+      		<h1>Chemical Component Editor<br/><span style="font-size:18px"> (Deposition Data Set: %(pdbid)s / %(identifier)s, Instance: (%(label)s)</span></h1>
 		</div>
     	<br class="clearfloat" /> 
 	</div>
@@ -189,7 +189,7 @@ $(document).ready(function() {
 	<br/>
     <div style="position: absolute; left:2px;" id="footerToolbar"></div>
 	<div style="margin-top:2700px" id="footer">
-   		<p>&copy; 2019 wwPDB Chemical Component Editor Module Editor V0.01</p>
+   		<p>&copy; 2019 wwPDB Chemical Component Editor V0.01</p>
 	</div>
 <!-- #footer ends above -->
 </div>
