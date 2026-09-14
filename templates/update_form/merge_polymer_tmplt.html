@@ -92,6 +92,24 @@ residue C_HIS_10_ &nbsp; <select name="C_HIS_10_">
 <span style="font-weight:bold; font-size:16px">
 merges to polymer with order of chain A, residue C_HIS_8_, residue C_HIS_9_, residue C_HIS_10_, chain B.
 </span>
+<br/> <br/>
+The following selection example defines the polymer type for a user-defined group. The default polymer type is not selected 
+because the program can usually determine the correct polymer type based on each residue type definition within the group. 
+However if a group contains many residues with undefined or incorrect identifiers the program may not determine the correct 
+polymer type based on the residue type definitions. In such cases, the user should select the correct polymer type. 
+<form>
+<br/>
+<span style="font-weight:bold; font-size:16px">Select polymer type:</span> &nbsp; <select name="polymer_type">
+<option value="" selected> 
+<option value="cyclic-pseudo-peptide" > cyclic-pseudo-peptide
+<option value="peptide nucleic acid" > peptide nucleic acid
+<option value="polydeoxyribonucleotide" > polydeoxyribonucleotide
+<option value="polydeoxyribonucleotide/polyribonucleotide hybrid" > polydeoxyribonucleotide/polyribonucleotide hybrid
+<option value="polypeptide(D)" > polypeptide(D)
+<option value="polypeptide(L)" > polypeptide(L)
+<option value="polyribonucleotide" > polyribonucleotide
+</select>
+</form>
 
 <br/> <br/>
 
